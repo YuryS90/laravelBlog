@@ -35,7 +35,7 @@
                                 <input type="text" name="title" class="form-control"
                                        placeholder="Название поста" value="{{$post->title}}">
                                 @error('title')
-                                <div class="text-danger">Заполните поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -44,7 +44,7 @@
                                     {{$post->content}}
                                 </textarea>
                                 @error('content')
-                                <div class="text-danger">Заполните поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -67,7 +67,7 @@
                                 </div>
 
                                 @error('preview_image')
-                                <div class="text-danger">Выберите изображение</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -89,7 +89,7 @@
                                 </div>
 
                                 @error('main_image')
-                                <div class="text-danger">Выберите изображение</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -105,23 +105,29 @@
                                     @endforeach
                                 </select>
 
+                                @error('category_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group w-25">
                                 <label>Тэги</label>
 
-                                <select class="select2" name="tag_ids[]" multiple="multiple"
+                                <select name="tag_ids[]" class="select2"  multiple="multiple"
                                         data-placeholder="Выберите тэги"
                                         style="width: 100%;">
                                     @foreach($tags as $tag)
                                         <option
-{{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : ''}}
+                                            {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : ''}}
                                             value="{{$tag->id}}">
                                             {{$tag->title}}
                                         </option>
                                     @endforeach
                                 </select>
 
+                                @error('tag_ids')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">

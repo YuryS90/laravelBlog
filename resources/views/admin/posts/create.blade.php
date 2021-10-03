@@ -35,7 +35,7 @@
                                        placeholder="Название поста" value="{{old('title')}}">
 
                                 @error('title')
-                                <div class="text-danger">Заполните поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -45,7 +45,7 @@
                                 </textarea>
 
                                 @error('content')
-                                <div class="text-danger">Заполните поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -53,7 +53,7 @@
                                 <label for="exampleInputFile">Добавить превью</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="preview_image">
+                                        <input type="file" name="preview_image" class="custom-file-input" >
                                         <label class="custom-file-label">Выберите изображение</label>
                                     </div>
                                     <div class="input-group-append">
@@ -62,7 +62,7 @@
                                 </div>
 
                                 @error('preview_image')
-                                <div class="text-danger">Выберите изображение</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -70,7 +70,7 @@
                                 <label for="exampleInputFile">Добавить главное изображение</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="main_image">
+                                        <input type="file" name="main_image" class="custom-file-input" >
                                         <label class="custom-file-label">Выберите изображение</label>
                                     </div>
                                     <div class="input-group-append">
@@ -79,7 +79,7 @@
                                 </div>
 
                                 @error('main_image')
-                                <div class="text-danger">Выберите изображение</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -93,11 +93,15 @@
                                         </option>
                                     @endforeach
                                 </select>
+
+                                @error('category_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group w-25">
                                 <label>Тэги</label>
-                                <select class="select2" name="tag_ids[]" multiple="multiple"
+                                <select name="tag_ids[]" class="select2"  multiple="multiple"
                                         data-placeholder="Выберите тэги"
                                         style="width: 100%;">
                                     @foreach($tags as $tag)
@@ -107,6 +111,10 @@
                                         </option>
                                     @endforeach
                                 </select>
+
+                                @error('tag_ids')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
